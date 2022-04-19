@@ -17,9 +17,13 @@ import com.bi_instatag.itandroidsdk.entities.Screen;
 import com.bi_instatag.itandroidsdk.events.ButtonClickTrackingEvent;
 import com.bi_instatag.itandroidsdk.events.FormEndTrackingEvent;
 import com.bi_instatag.itandroidsdk.events.FormStartTrackingEvent;
+import com.bi_instatag.itandroidsdk.events.InputFieldChangeTrackingEvent;
 import com.bi_instatag.itandroidsdk.events.LoginTrackingEvent;
+import com.bi_instatag.itandroidsdk.events.RegistrationEndTrackingEvent;
+import com.bi_instatag.itandroidsdk.events.RegistrationStartTrackingEvent;
 import com.bi_instatag.itandroidsdk.events.ScreenViewTrackingEvent;
 import com.bi_instatag.itandroidsdk.events.SearchTrackingEvent;
+import com.bi_instatag.itandroidsdk.events.SoftAuthTrackingEvent;
 import com.bi_instatag.itandroidsdk.events.TrackingEvent;
 import com.bi_instatag.itandroidsdk.events.TrackingQueue;
 
@@ -248,6 +252,11 @@ public class Instatag implements InstatagAPIHandler {
         Instatag.instance.trackingQueue.execute();
     }
 
+    /**
+     * Track button click
+     *
+     * @param buttonName
+     */
     public static void trackButton(String buttonName) {
         if (Instatag.instance == null) {
             Log.e(TAG, "Can't execute #trackButton because Instatag isn't yet initialized");
@@ -263,7 +272,14 @@ public class Instatag implements InstatagAPIHandler {
         Instatag.instance.trackingQueue.execute();
     }
 
-    public static void trackFormStart(String formName) {
+    /**
+     * Track form start
+     *
+     * @param formName
+     * @param speciality
+     * @param medicalInformation
+     */
+    public static void trackFormStart(String formName, String speciality, String medicalInformation) {
         if (Instatag.instance == null) {
             Log.e(TAG, "Can't execute #trackFormStart because Instatag isn't yet initialized");
             return; // TODO - Return smth or throw exception
@@ -272,13 +288,20 @@ public class Instatag implements InstatagAPIHandler {
             Log.e(TAG, "Can't execute #trackFormStart because screen name isn't set yet");
             return;
         }
-        TrackingEvent event = new FormStartTrackingEvent(Instatag.instance.screenName, formName);
+        TrackingEvent event = new FormStartTrackingEvent(Instatag.instance.screenName, formName, speciality, medicalInformation);
 
         Instatag.instance.addEventToQueue(event);
         Instatag.instance.trackingQueue.execute();
     }
 
-    public static void trackFormEnd(String formName) {
+    /**
+     * Track form end
+     *
+     * @param formName
+     * @param speciality
+     * @param medicalInformation
+     */
+    public static void trackFormEnd(String formName, String speciality, String medicalInformation) {
         if (Instatag.instance == null) {
             Log.e(TAG, "Can't execute #trackFormEnd because Instatag isn't yet initialized");
             return; // TODO - Return smth or throw exception
@@ -287,13 +310,20 @@ public class Instatag implements InstatagAPIHandler {
             Log.e(TAG, "Can't execute #trackFormEnd because screen name isn't set yet");
             return;
         }
-        TrackingEvent event = new FormEndTrackingEvent(Instatag.instance.screenName, formName);
+        TrackingEvent event = new FormEndTrackingEvent(Instatag.instance.screenName, formName, speciality, medicalInformation);
 
         Instatag.instance.addEventToQueue(event);
         Instatag.instance.trackingQueue.execute();
     }
 
-    public static void trackSearch(String keyword, String results) {
+    /**
+     * Track search request
+     *
+     * @param keyword
+     * @param results
+     * @param category
+     */
+    public static void trackSearch(String keyword, String results, String category) {
         if (Instatag.instance == null) {
             Log.e(TAG, "Can't execute #trackSearch because Instatag isn't yet initialized");
             return; // TODO - Return smth or throw exception
@@ -302,12 +332,20 @@ public class Instatag implements InstatagAPIHandler {
             Log.e(TAG, "Can't execute #trackSearch because screen name isn't set yet");
             return;
         }
-        TrackingEvent event = new SearchTrackingEvent(Instatag.instance.screenName, keyword, results);
+        TrackingEvent event = new SearchTrackingEvent(Instatag.instance.screenName, keyword, results, category);
 
         Instatag.instance.addEventToQueue(event);
         Instatag.instance.trackingQueue.execute();
     }
 
+    /**
+     * Track login
+     *
+     * @param id
+     * @param authMethod
+     * @param visitorType
+     * @param idType
+     */
     public static void trackLogin(String id, String authMethod, VisitorType visitorType, IDType idType) {
         if (Instatag.instance == null) {
             Log.e(TAG, "Can't execute #trackLogin because Instatag isn't yet initialized");
@@ -318,6 +356,91 @@ public class Instatag implements InstatagAPIHandler {
             return;
         }
         TrackingEvent event = new LoginTrackingEvent(Instatag.instance.screenName, id, authMethod, visitorType, idType);
+
+        Instatag.instance.addEventToQueue(event);
+        Instatag.instance.trackingQueue.execute();
+    }
+
+    /**
+     * Track registration start
+     *
+     * @param formName
+     * @param speciality
+     * @param medicalInformation
+     */
+    public static void trackRegistrationFormStart(String formName, String speciality, String medicalInformation) {
+        if (Instatag.instance == null) {
+            Log.e(TAG, "Can't execute #trackRegistrationFormStart because Instatag isn't yet initialized");
+            return; // TODO - Return smth or throw exception
+        }
+        if (Instatag.instance.screenName == null || Instatag.instance.screenName == "") {
+            Log.e(TAG, "Can't execute #trackRegistrationFormStart because screen name isn't set yet");
+            return;
+        }
+        TrackingEvent event = new RegistrationStartTrackingEvent(Instatag.instance.screenName, formName, speciality, medicalInformation);
+
+        Instatag.instance.addEventToQueue(event);
+        Instatag.instance.trackingQueue.execute();
+    }
+
+    /**
+     * Track registration end
+     *
+     * @param formName
+     * @param speciality
+     * @param medicalInformation
+     */
+    public static void trackRegistrationFormEnd(String formName, String speciality, String medicalInformation) {
+        if (Instatag.instance == null) {
+            Log.e(TAG, "Can't execute #trackRegistrationFormEnd because Instatag isn't yet initialized");
+            return; // TODO - Return smth or throw exception
+        }
+        if (Instatag.instance.screenName == null || Instatag.instance.screenName == "") {
+            Log.e(TAG, "Can't execute #trackRegistrationFormEnd because screen name isn't set yet");
+            return;
+        }
+        TrackingEvent event = new RegistrationEndTrackingEvent(Instatag.instance.screenName, formName, speciality, medicalInformation);
+
+        Instatag.instance.addEventToQueue(event);
+        Instatag.instance.trackingQueue.execute();
+    }
+
+    /**
+     * Track input field change
+     *
+     * @param formName
+     * @param fieldName
+     */
+    public static void trackInputFieldChange(String formName, String fieldName) {
+        if (Instatag.instance == null) {
+            Log.e(TAG, "Can't execute #trackInputFieldChange because Instatag isn't yet initialized");
+            return; // TODO - Return smth or throw exception
+        }
+        if (Instatag.instance.screenName == null || Instatag.instance.screenName == "") {
+            Log.e(TAG, "Can't execute #trackInputFieldChange because screen name isn't set yet");
+            return;
+        }
+        TrackingEvent event = new InputFieldChangeTrackingEvent(Instatag.instance.screenName, formName, fieldName);
+
+        Instatag.instance.addEventToQueue(event);
+        Instatag.instance.trackingQueue.execute();
+    }
+
+    /**
+     * Track soft authentication
+     *
+     * @param visitorType
+     */
+    public static void trackSoftAuth(VisitorType visitorType) {
+        if (Instatag.instance == null) {
+            Log.e(TAG, "Can't execute #trackSoftAuth because Instatag isn't yet initialized");
+            return; // TODO - Return smth or throw exception
+        }
+        if (Instatag.instance.screenName == null || Instatag.instance.screenName == "") {
+            Log.e(TAG, "Can't execute #trackSoftAuth because screen name isn't set yet");
+            return;
+        }
+        TrackingEvent event = new SoftAuthTrackingEvent(Instatag.instance.screenName, visitorType);
 
         Instatag.instance.addEventToQueue(event);
         Instatag.instance.trackingQueue.execute();

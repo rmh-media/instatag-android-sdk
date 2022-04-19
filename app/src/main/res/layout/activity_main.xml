@@ -189,6 +189,58 @@
             android:gravity="center|center_vertical"
             android:padding="2dp"
             android:text="Track Login" />
+
+        <Button
+            android:id="@+id/buttonTrackRegistrationFormStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_vertical"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center|center_vertical"
+            android:padding="2dp"
+            android:text="Track Registration FormStart" />
+
+        <Button
+            android:id="@+id/buttonTrackRegistrationFormEnd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_vertical"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center|center_vertical"
+            android:padding="2dp"
+            android:text="Track Registration FormEnd" />
+
+        <Button
+            android:id="@+id/buttonTrackInputFieldChange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_vertical"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center|center_vertical"
+            android:padding="2dp"
+            android:text="Track Input Field Change" />
+
+        <Button
+            android:id="@+id/buttonTrackSoftAuth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_vertical"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center|center_vertical"
+            android:padding="2dp"
+            android:text="Track Soft Auth" />
     </LinearLayout>
 
     <TextView

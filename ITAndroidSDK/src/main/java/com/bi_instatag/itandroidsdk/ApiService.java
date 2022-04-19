@@ -19,10 +19,10 @@ class CreateScreenRequest {
 
 public interface ApiService {
 
-    @GET("config/{mobileKey}?itVersion=2")
+    @GET("mobile-config/{mobileKey}")
     Call<MobileConfigResponse> loadMobileConfig(@Path("mobileKey") String mobileKey);
 
-    @POST("config/{mobileKey}/screen?itVersion=2")
+    @POST("mobile-config/{mobileKey}/screen")
     Call<CreateScreenResponse> createScreen(@Path("mobileKey") String mobileKey, @Body CreateScreenRequest screen);
 
 }
