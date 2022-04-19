@@ -31,10 +31,15 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<View>(R.id.buttonTrackScreenView).setOnClickListener { Instatag.trackScreen(screenNameView.text.toString()) }
         findViewById<View>(R.id.buttonTrackButton).setOnClickListener { Instatag.trackButton("First demo btn") }
-        findViewById<View>(R.id.buttonTrackFormStart).setOnClickListener { Instatag.trackFormStart("demo form") }
-        findViewById<View>(R.id.buttonTrackFormEnd).setOnClickListener { Instatag.trackFormEnd("demo form") }
-        findViewById<View>(R.id.buttonTrackSearch).setOnClickListener { Instatag.trackSearch("whatsup", "42") }
+        findViewById<View>(R.id.buttonTrackFormStart).setOnClickListener { Instatag.trackFormStart("demo form", "speciality", "medical info") }
+        findViewById<View>(R.id.buttonTrackFormEnd).setOnClickListener { Instatag.trackFormEnd("demo form", "speciality", "medical info") }
+        findViewById<View>(R.id.buttonTrackSearch).setOnClickListener { Instatag.trackSearch("whatsup", "42", "life") }
         findViewById<View>(R.id.buttonTrackLogin).setOnClickListener { Instatag.trackLogin("user-id", "password", VisitorType.HCP, IDType.VeevaId) }
+        findViewById<View>(R.id.buttonTrackRegistrationFormStart).setOnClickListener { Instatag.trackRegistrationFormStart("reg form", "speciality", "medical info") }
+        findViewById<View>(R.id.buttonTrackRegistrationFormEnd).setOnClickListener { Instatag.trackRegistrationFormEnd("reg form", "speciality", "medical info") }
+        findViewById<View>(R.id.buttonTrackInputFieldChange).setOnClickListener { Instatag.trackInputFieldChange("reg form", "firstname") }
+        findViewById<View>(R.id.buttonTrackSoftAuth).setOnClickListener { Instatag.trackSoftAuth(VisitorType.HCP) }
+
 
         var ver: String = "IT Version: " + Instatag.version()
         versionView.text = ver;

@@ -10,17 +10,20 @@ public class SearchTrackingEvent extends TrackingEvent {
 
     private String keyword;
     private String results;
+    private String category;
 
-    public SearchTrackingEvent(Screen screen, String keyword, String results) {
+    public SearchTrackingEvent(Screen screen, String keyword, String results, String category) {
         super(screen);
         this.keyword = keyword;
         this.results = results;
+        this.category = category == null ? "" : category;
     }
 
-    public SearchTrackingEvent(String screenName, String keyword, String results) {
+    public SearchTrackingEvent(String screenName, String keyword, String results, String category) {
         super(screenName);
         this.keyword = keyword;
         this.results = results;
+        this.category = category == null ? "" : category;
     }
 
     @Override
@@ -34,6 +37,11 @@ public class SearchTrackingEvent extends TrackingEvent {
         additionalContextData.put("eVar22", this.results);
         additionalContextData.put("mid", "D=mid");
         additionalContextData.put("&&events", "event3");
+
+        if (this.category != "") {
+            additionalContextData.put("evar86", this.category);
+        }
+
         MobileCore.trackAction("event3", additionalContextData);
     }
 }

@@ -47,9 +47,9 @@ public class LoginTrackingEvent extends TrackingEvent {
             case VeevaId:
                 return "VeevaId";
             case Unknown:
-                return (this.id.length() == 15 || this.id.length() == 18) ? "VeevaID" : "";
+                return (this.id.length() == 15 || this.id.length() == 18) ? "VeevaID" : "Other";
             default:
-                return "";
+                return "Other";
         }
     }
 
@@ -60,6 +60,7 @@ public class LoginTrackingEvent extends TrackingEvent {
         }
 
         Map<String, String> additionalContextData = new HashMap<>();
+        additionalContextData.put("eVar16", "logged in");
         additionalContextData.put("eVar18", this.id);
         additionalContextData.put("eVar67", this.authMethod);
         additionalContextData.put("eVar78", this.getVisitorType());
@@ -67,6 +68,5 @@ public class LoginTrackingEvent extends TrackingEvent {
         additionalContextData.put("mid", "D=mid");
         additionalContextData.put("&&events", "event2");
         MobileCore.trackAction("event2", additionalContextData);
-        System.out.println("Instatag: executed trackAction 'visitor_loginComplete' (eVar18:" + this.id + ", eVar67:" + this.authMethod + ", eVar78:" + this.getVisitorType() + ", eVar112:" + this.getIdType() + ")");
     }
 }
