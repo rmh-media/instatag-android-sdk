@@ -44,7 +44,7 @@ public class Instatag implements InstatagAPIHandler {
     private static final String ADOBE_LAUNCH_ID_STAGING = "414cfb5a3140/1ea528a38d18/launch-11d2dca86545-staging";
     private static final String ADOBE_LAUNCH_ID_PRODUCTION = "414cfb5a3140/1ea528a38d18/launch-ca20917d654c";
 
-    private static final String version = "v1.0.1";
+    private static final String version = "v1.1.5";
 
     public static String getError() {
         return error;
@@ -88,6 +88,8 @@ public class Instatag implements InstatagAPIHandler {
             Log.e(TAG, "mobileKey must be set");
             throw new InstatagException("mobileKey must be set");
         }
+
+        com.adobe.marketing.mobile.ListenerUserProfileRequestReset asd = new com.adobe.marketing.mobile.ListenerUserProfileRequestReset();
 
         if (Instatag.instance == null) {
             Instatag.instance = new Instatag();
@@ -208,9 +210,8 @@ public class Instatag implements InstatagAPIHandler {
      */
 
     public void addEventToQueue(TrackingEvent event) {
-        Screen screen = mobileConfig.getScreen(event.getScreenName());
-
         if (isReady()) {
+            Screen screen = mobileConfig.getScreen(event.getScreenName());
             if (screen == null) {
                 // Create new screen
                 unknownScreenQueue.add(event);

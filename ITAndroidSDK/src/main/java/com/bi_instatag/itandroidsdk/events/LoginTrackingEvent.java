@@ -45,7 +45,7 @@ public class LoginTrackingEvent extends TrackingEvent {
     private String getIdType() {
         switch (this.idType) {
             case VeevaId:
-                return "VeevaId";
+                return "VeevaID";
             case Unknown:
                 return (this.id.length() == 15 || this.id.length() == 18) ? "VeevaID" : "Other";
             default:

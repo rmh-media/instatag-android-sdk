@@ -30,7 +30,7 @@ class InstatagAPI {
 
     private static final String TAG = "Instatag";
 
-    static final String BASE_URL = "https://mapi.bi-instatag.com/api/";
+    static final String BASE_URL = "https://mapi.bi-instatag.com/api/v1/";
     // openssl s_client -connect mapi.bi-instatag.com:443 -tls1
     private InstatagAPIHandler consumer;
 
