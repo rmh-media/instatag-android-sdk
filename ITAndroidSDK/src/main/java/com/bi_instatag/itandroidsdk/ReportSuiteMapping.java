@@ -7,6 +7,7 @@ public class ReportSuiteMapping {
     public static final HashMap<String, ReportSuiteSetting> settings;
     static {
         settings = new HashMap<String, ReportSuiteSetting>();
+        settings.put("GLOBAL", new ReportSuiteSetting("GLOBAL", "boehr.mobile-global-development", "boehr.mobile-global-production"));
         settings.put("AH Europe", new ReportSuiteSetting("AH Europe", "boehr.ah.eu.app-dev", "boehr.ah.eu.app-prod"));
         settings.put("AH Latin America", new ReportSuiteSetting("AH Latin America", "boehr.ah.latam.app-dev", "boehr.ah.latam.app-prod"));
         settings.put("AH Met Asia", new ReportSuiteSetting("AH Met Asia", "boehr.ah.metasia.app-dev", "boehr.ah.metasia.app-prod"));

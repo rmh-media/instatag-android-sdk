@@ -89,7 +89,7 @@ public class Instatag implements InstatagAPIHandler {
             throw new InstatagException("mobileKey must be set");
         }
 
-        com.adobe.marketing.mobile.ListenerUserProfileRequestReset asd = new com.adobe.marketing.mobile.ListenerUserProfileRequestReset();
+        // com.adobe.marketing.mobile.ListenerUserProfileRequestReset asd = new com.adobe.marketing.mobile.ListenerUserProfileRequestReset();
 
         if (Instatag.instance == null) {
             Instatag.instance = new Instatag();
