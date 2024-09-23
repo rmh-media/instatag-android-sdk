@@ -36,3 +36,7 @@ android {
         implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
     }
 }
+
+dependencies {
+    testImplementation 'org.testng:testng:6.9.6'
+}

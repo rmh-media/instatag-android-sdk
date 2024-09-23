@@ -3,6 +3,7 @@ package com.bi_instatag.itandroidsdk.entities;
 import com.bi_instatag.itandroidsdk.Environment;
 import com.bi_instatag.itandroidsdk.ReportSuiteMapping;
 import com.bi_instatag.itandroidsdk.ReportSuiteSetting;
+import com.bi_instatag.itandroidsdk.ReportSuite;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -69,15 +70,17 @@ public class MobileConfig {
     }
 
     public String getReportSuite() {
+        String globalReportName = "GLOBAL";
         ReportSuiteSetting setting = ReportSuiteMapping.settings.get(webPropertyName);
-        if (setting == null) {
-            return "";
-        }
+        ReportSuiteSetting globalSetting = ReportSuiteMapping.settings.get(globalReportName);
+
+        ReportSuite reportSuite = new ReportSuite(setting, globalSetting);
+
         switch (environment) {
             case Environment.Staging:
-                return setting.getDevURL();
+                return reportSuite.getDevURL();
             case Environment.Production:
-                return setting.getProdURL();
+                return reportSuite.getProdURL();
             default:
                 return "";
         }
